@@ -13,19 +13,19 @@
                                 <form method="post" action="javascript:void(0)" id="form-tambah-barang-session">
                                     <div class="form-group">
                                         <label for="jml_coli">Jumlah Coli</label>
-                                        <input type="text" class="form-control form-control-sm" name="jml_coli">
+                                        <input type="number" class="form-control form-control-sm" name="jml_coli" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama_barang">Nama Barang</label>
-                                        <input type="text" class="form-control form-control-sm" name="nama_barang">
+                                        <input type="text" class="form-control form-control-sm" name="nama_barang" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="berat">Berat</label>
-                                        <input type="text" class="form-control form-control-sm" name="berat">
+                                        <input type="text" class="form-control form-control-sm" name="berat" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="ongkos">Ongkos</label>
-                                        <input type="text" class="form-control form-control-sm" name="ongkos">
+                                        <input type="number" class="form-control form-control-sm" name="ongkos" required>
                                     </div>
                                     <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
                                 </form>
@@ -52,19 +52,19 @@
                                 <form method="post" action="javascript:void(0)" id="form-tambah-barang">
                                     <div class="form-group">
                                         <label for="jml_coli">Jumlah Coli</label>
-                                        <input type="text" class="form-control form-control-sm" name="jml_coli">
+                                        <input type="number" class="form-control form-control-sm" name="jml_coli" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama_barang">Nama Barang</label>
-                                        <input type="text" class="form-control form-control-sm" name="nama_barang">
+                                        <input type="text" class="form-control form-control-sm" name="nama_barang" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="berat">Berat</label>
-                                        <input type="text" class="form-control form-control-sm" name="berat">
+                                        <input type="text" class="form-control form-control-sm" name="berat" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="ongkos">Ongkos</label>
-                                        <input type="text" class="form-control form-control-sm" name="ongkos">
+                                        <input type="number" class="form-control form-control-sm" name="ongkos" required>
                                     </div>
                                     <input type="hidden" name="id_transaksi" value="<?= $transaksi->id_transaksi?>" />
                                     <button type="submit" onclick="tambah_barang()" class="btn btn-sm btn-primary">Tambah</button>
@@ -93,22 +93,22 @@
                                     
                                     <div class="form-group">
                                         <label for="jml_coli">Jumlah Coli</label>
-                                        <input type="text" class="form-control form-control-sm" name="jml_coli" value="<?= $detailbarang->jml_coli ?>">
+                                        <input type="number" class="form-control form-control-sm" required name="jml_coli" value="<?= $detailbarang->jml_coli ?> ">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama_barang">Nama Barang</label>
-                                        <input type="text" class="form-control form-control-sm" name="nama_barang" value="<?= $detailbarang->nama_barang ?>">
+                                        <input type="text" class="form-control form-control-sm" required name="nama_barang" value="<?= $detailbarang->nama_barang ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="berat">Berat</label>
-                                        <input type="text" class="form-control form-control-sm" name="berat" value="<?= $detailbarang->berat ?>">
+                                        <input type="text" class="form-control form-control-sm" required name="berat" value="<?= $detailbarang->berat ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="ongkos">Ongkos</label>
-                                        <input type="text" class="form-control form-control-sm" name="ongkos" value="<?= $detailbarang->ongkos ?>">
+                                        <input type="text" class="form-control form-control-sm" required name="ongkos" value="<?= $detailbarang->ongkos ?>">
                                     </div>
 
-                                    <input type="submit" name="submit" class="btn btn-sm btn-primary" value="Simpan">
+                                    <input type="submit" name="submit" class="btn btn-sm btn-primary" required value="Simpan">
                                 </form>
                             </div>
                         </div>

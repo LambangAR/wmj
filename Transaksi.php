@@ -19,6 +19,13 @@ class Transaksi extends CI_Controller {
         $this->load->view('transaksi/daftar_transaksi', $data);
     }
 
+        // Menampilkan Daftar Transaksi
+    public function print() {
+        $_SESSION['barang'] = array();
+        $data["transaksi"] = $this->transaksi_model->getAll();
+        $this->load->view('transaksi/print', $data);
+    }
+
     // Menambah Barang Session
     public function tambah_barang() {
         $jml = $this->input->post('jml_coli');
@@ -75,7 +82,8 @@ class Transaksi extends CI_Controller {
 
             $this->barang_model->add($data);
         }
-        $this->load->view('transaksi/input_transaksi', $data);
+        redirect('transaksi');
+        // $this->load->view('transaksi/input_transaksi', $data);
     }
 
     // Menampilkan Halaman Update

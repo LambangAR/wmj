@@ -4,6 +4,7 @@
     <?php $this->load->view('__partials/head.php');?>
 </head>
 <body>
+    
     <?php $this->load->view('__partials/navbar.php');?>
 
     <section id="input_transaksi">
@@ -31,7 +32,7 @@
                 </div>
                 <div class="form-group">
                 <label for="kota">Kota</label>
-                <input type="text" class="form-control form-control-sm form-kota" name="kota">
+                <input type="text" class="form-control form-control-sm form-kota" name="kota" minlength="4" required>
                 </div>
                 <div class="form-group">
                 <label for="jns_barang">Jenis Barang</label>
@@ -48,15 +49,15 @@
                 </div>
                 <div class="form-group">
                 <label for="dm_operan">DM Operan</label>
-                <input type="text" class="form-control form-control-sm form-dm" name="dm_operan">
+                <input type="text" class="form-control form-control-sm form-dm" name="dm_operan" minlength="4" required>
                 </div>
                 <div class="form-group">
                 <label for="pengirim">Pengirim</label>
-                <input type="text" class="form-control form-control-sm" name="pengirim">
+                <input type="text" class="form-control form-control-sm" name="pengirim" minlength="4" required>
                 </div>
                 <div class="form-group">
                 <label for="penerima">Penerima</label>
-                <input type="text" class="form-control form-control-sm" name="penerima">
+                <input type="text" class="form-control form-control-sm" name="penerima" minlength="4" required>
                 </div>
                 <div class="form-group">
                 <label for="pembayaran">Pembayaran</label>
@@ -109,8 +110,17 @@
                     <div class="row">
                         <div class="col-sm-6 offset-md-6">
                             <div class="form-group">
+                            <?php foreach ($_SESSION['barang'] as $key ) {
+                                $a[] = $key['ongkos'];
+                            }
+                            $c = 0;
+                            $b = count($_SESSION['barang']);
+                            for ($i=0; $i < $b ; $i++) { 
+                               $c = $a[$i]+$c;
+                            } ?>
                             <label for="jumlah">Jumlah</label>
-                            <input type="text" class="form-control form-control-sm" name="jumlah" id="jumlah" readonly>
+                            <input type="text" class="form-control form-control-sm" name="jumlah" id="jumlah" readonly
+                             value="<?= $c ?>">
                             </div>
                             <div class="form-group">
                             <label for="ekstra">Ekstra</label>
@@ -118,17 +128,17 @@
                             </div>
                             <div class="form-group">
                             <label for="biaya_ekstra">Biaya Ekstra</label>
-                            <input type="text" class="form-control form-control-sm" name="biaya_ekstra" id="biaya_ekstra">
+                            <input type="number" class="form-control form-control-sm" value=0 name="biaya_ekstra" id="biaya_ekstra" >
                             </div>
                             <div class="form-group">
                             <label for="total">Total</label>
-                            <input type="text" class="form-control form-control-sm" name="total" id="total" readonly>
+                            <input type="number" class="form-control form-control-sm" name="total" id="total" readonly  value="<?= $c ?>">
                             </div>
                         </div>
                     </div>
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <input type="submit" name="btn" class="btn btn-primary" value="Tambahkan">
+                            <input type="submit" name="btn" class="btn btn-primary" value="Tambahkan" onclick="newTab()">
                         </div>
                     </div>
                     </div>
@@ -148,6 +158,10 @@
         $(document).ready(function(){
 
         });
+        function newTab(url) {
+           var win = window.open('print', '_blank');
+           win.focus();
+        }
 
         function isi_kota() {
             var wil = $('.form-wilayah').val();
@@ -196,6 +210,21 @@
                 }
             });
         }
+        $('#biaya_ekstra').keyup(function(){
+            if($(this).val() != ''){
+                var total = parseInt($('#jumlah').val()) + parseInt($(this).val());
+            }else{
+
+                var total = parseInt($('#jumlah').val()) + 0;
+            }
+            
+            $('#total').val(total);
+            console.log(total);
+
+        });
+        
+
+
 
         // function hapus_barang() {
         //     $.ajax({
