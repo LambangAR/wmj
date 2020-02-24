@@ -105,6 +105,7 @@
                         <td><?= $bar->berat ?></td>
                         <td><?= $bar->ongkos ?></td>
                         <td>
+                            <a href="#" data-toggle="modal" data-target="#edit-barang" onclick="get_edit(<?= $bar->id_barang ?>)" class="btn btn-outline-info btn-block btn-sm">Edit</a>
                             <a href="#" onclick="hapus_barang(<?= $bar->id_barang ?>)" class="btn btn-outline-danger btn-block btn-sm hapus-barang">Hapus</a>
                         </td>
                     </tr>
@@ -189,6 +190,31 @@
                 }
             });
         }
+
+        function edit_barang() {
+            $.ajax({
+                success : function() {
+                    location.reload();
+                }
+            });
+        }
+
+        function get_edit(id){
+			$.ajax({
+				method: 'post',
+				url:'<?php echo site_url()?>barang/ajax',
+				data: {id: id},
+				dataType: 'html',
+				success: function (response) {
+			    	$('#edit-ajax').html(response);
+							console.log(id);
+				},
+				error: function (response){
+    				alert('Eror');	
+    				console.log('<?php echo site_url()?>admin/ajax');					
+						}
+				});				
+			}
 
         function isi_kota() {
             var wil = $('.form-wilayah').val();

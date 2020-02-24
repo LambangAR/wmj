@@ -91,7 +91,7 @@ class Transaksi extends CI_Controller {
         $data["transaksi"] = $this->transaksi_model->getById($id);
         $data["barang"] =$this->barang_model->getByTransaksiId($id);
         $data["barangArray"] =$this->barang_model->getByTransaksiIdArr($id);
-        $data["detailbarang"] =$this->barang_model->getById($id);
+        // $data["detailbarang"] =$this->barang_model->getById($id)->result_array();
         $data["wilayah"] = $this->wilayah_model->getAll();
 
         $data["jenis_barang"] = $this->jenis_barang_model->getAll();

@@ -89,27 +89,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 offset-md-2">
-                                <form action="" method="post">
-                                    
-                                    <div class="form-group">
-                                        <label for="jml_coli">Jumlah Coli</label>
-                                        <input type="number" class="form-control form-control-sm" required name="jml_coli" value="<?= $detailbarang->jml_coli ?> ">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nama_barang">Nama Barang</label>
-                                        <input type="text" class="form-control form-control-sm" required name="nama_barang" value="<?= $detailbarang->nama_barang ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="berat">Berat</label>
-                                        <input type="text" class="form-control form-control-sm" required name="berat" value="<?= $detailbarang->berat ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ongkos">Ongkos</label>
-                                        <input type="text" class="form-control form-control-sm" required name="ongkos" value="<?= $detailbarang->ongkos ?>">
-                                    </div>
-
-                                    <input type="submit" name="submit" class="btn btn-sm btn-primary" required value="Simpan">
-                                </form>
+                                <div class="data" id="edit-ajax"></div>
                             </div>
                         </div>
                     </div>
