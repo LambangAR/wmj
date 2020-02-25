@@ -19,10 +19,12 @@ class Transaksi extends CI_Controller {
         $this->load->view('transaksi/daftar_transaksi', $data);
     }
 
-        // Menampilkan Daftar Transaksi
-    public function print() {
-        $_SESSION['barang'] = array();
-        $data["transaksi"] = $this->transaksi_model->getAll();
+        // Menampilkan Print
+    public function print($query) {
+
+        $data["trans"] = $this->transaksi_model->getByIdArray($query);
+        $data["bar"] = $this->barang_model->getByTransaksiIdArr($query);
+
         $this->load->view('transaksi/print', $data);
     }
 
@@ -69,7 +71,7 @@ class Transaksi extends CI_Controller {
             'ekstra' => $this->input->post('ekstra'),
             'biaya_ekstra' => $this->input->post('biaya_ekstra')
         );
-        $id_transaksi = $this->transaksi_model->add($data);
+        $query = $this->transaksi_model->add($data);
 
         foreach($_SESSION['barang'] as $value) {
             $data = array(
@@ -77,13 +79,17 @@ class Transaksi extends CI_Controller {
                 'nama_barang' => $value['nama_barang'],
                 'berat' => $value['berat'],
                 'ongkos' => $value['ongkos'],
-                'id_transaksi' => $id_transaksi
+                'id_transaksi' => $query['trans']
             );
 
             $this->barang_model->add($data);
         }
-        redirect('transaksi');
-        // $this->load->view('transaksi/input_transaksi', $data);
+        echo '<script>window.open(`'.site_url('transaksi/print/'.$query).'`, `_blank`).focus();</script>';
+        $data["transaksi"] = $this->transaksi_model->getAll();
+        $this->load->view('transaksi/daftar_transaksi', $data);
+        // redirect('transaksi');
+        // $data['data'] = $this->transaksi_model->getByIdArray($id_transaksi);
+        // $this->load->view('transaksi/print', $data);
     }
 
     // Menampilkan Halaman Update

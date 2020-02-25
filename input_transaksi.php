@@ -138,7 +138,7 @@
                     </div>
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <input type="submit" name="btn" class="btn btn-primary" value="Tambahkan" onclick="newTab()">
+                            <input type="submit" name="btn" class="btn btn-primary" value="Tambahkan">
                         </div>
                     </div>
                     </div>
@@ -160,7 +160,19 @@
         });
         function newTab(url) {
            var win = window.open('print', '_blank');
-           win.focus();
+        //    $.ajax({
+		// 			method: 'post',
+		// 			url:'<?php echo site_url()?>admin/about',
+		// 			dataType: 'html',
+		// 			success: function (response) {
+		// 				console.log(response);
+        //                 win.focus();
+		// 			},
+		// 			error: function (response){
+		// 				alert('Eror');
+		// 				// console.log('<?php echo site_url()?>admin/about');
+		// 			}
+		// 		});
         }
 
         function isi_kota() {

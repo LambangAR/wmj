@@ -51,7 +51,11 @@
                 </div>
                 <div class="form-group">
                 <label for="resi">Resi</label>
-                <input type="text" class="form-control form-control-sm form-resi" name="resi" value="<?= $transaksi->resi ?>">
+                <?php if ($transaksi->jenis_barang == 'Stok') { ?>
+                    <input type="text" class="form-control form-control-sm form-resi" name="resi" value="<?= $transaksi->resi ?>" readonly>  
+                <?php } else { ?>
+                    <input type="text" class="form-control form-control-sm form-resi" name="resi" value="<?= $transaksi->resi ?>">
+                <?php } ?>
                 </div>
                 <div class="form-group">
                 <label for="dm-operan">DM Operan</label>
@@ -220,12 +224,12 @@
             var wil = $('.form-wilayah').val();
 
             if(wil == 2) {
-                $(".form-kota").attr('disabled', 'disabled');
+                $(".form-kota").attr('readonly', 'readonly');
                 $(".form-kota").val('');
 
                 $('.form-resi').val("<?php $t= time(); echo ('JTM'.$t)?>");
             } else {
-                $(".form-kota").removeAttr('disabled');
+                $(".form-kota").removeAttr('readonly');
                 $('.form-resi').val("<?php $t= time(); echo ('JTG'.$t)?>");
             }
         }
@@ -234,11 +238,13 @@
             var jns = $('.form-jns-barang').val();
 
             if(jns == 1) {
-                $(".form-resi").attr('readonly', 'readonly');
-                $('.form-dm').attr('disabled', 'disabled');
+                $(".form-dm").attr('readonly', 'readonly');
+                $('.form-resi').attr('readonly', 'readonly');
+                $(".form-dm").val('');
+
             } else {
                 $(".form-resi").removeAttr('readonly');
-                $(".form-dm").removeAttr('disabled');
+                $(".form-dm").removeAttr('readonly');
             }
         }
 

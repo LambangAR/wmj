@@ -31,6 +31,15 @@ class Transaksi_model extends CI_Model {
         return $this->db->get_where($this->table, ["id_transaksi" => $id])->row();
     }
 
+    // Menampilkan data sesuai Id dengan Array
+    public function getByIdArray($id)
+    {
+        $this->db->select('transaksi.*, wilayah.wilayah, jenis_barang.jenis_barang, pembayaran.pembayaran');
+        $this->db->join('wilayah', 'transaksi.id_wilayah = wilayah.id_wilayah');
+        $this->db->join('jenis_barang', 'transaksi.id_jns_barang = jenis_barang.id_jenis_barang');
+        $this->db->join('pembayaran', 'transaksi.id_jns_pembayaran = pembayaran.id_pembayaran');
+        return $this->db->get_where($this->table, ["id_transaksi" => $id])->result_array();
+    }
     // Melakukan update data
     public function update($data, $where)
     {
